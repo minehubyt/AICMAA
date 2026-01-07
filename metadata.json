@@ -1,0 +1,7 @@
+{
+  "name": "AICMAA - All India CMA Association",
+  "description": "A high-fidelity professional UI replica of a premier policy organization website, tailored for the All India CMA Association (AICMAA). Featuring a modern design, policy focus, and an integrated AI Research Assistant.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
