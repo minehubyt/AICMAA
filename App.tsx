@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import PolicyAssistant from './components/PolicyAssistant';
-import TwitterFeed from './components/TwitterFeed';
 import { POLICY_ISSUES, LATEST_NEWS } from './constants';
 import { ArrowRight, ChevronRight, BarChart3, Users, Globe, Building2 } from 'lucide-react';
 
@@ -14,7 +13,7 @@ const App: React.FC = () => {
       <Header />
       <Hero />
 
-      {/* Trust & Impact Stats - Fluid Grid */}
+      {/* Trust & Impact Stats - Mixed Case */}
       <section className="py-[10%] md:py-24 bg-[#f8fafc] border-b border-gray-100">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 md:gap-x-12 text-center">
@@ -23,45 +22,45 @@ const App: React.FC = () => {
                 <Users className="text-[#1a365d]" size={28} />
               </div>
               <div className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-[#1a365d] mb-1">50,000+</div>
-              <div className="text-[min(11px,2.5vw)] uppercase tracking-widest font-black text-blue-600/70">Professional Members</div>
+              <div className="text-[min(12px,2.5vw)] font-bold text-blue-600/70">Professional Members</div>
             </div>
             <div className="flex flex-col items-center group cursor-default">
               <div className="w-[min(64px,12vw)] h-[min(64px,12vw)] rounded-full bg-white shadow-sm flex items-center justify-center mb-6 group-hover:shadow-md transition-all duration-500 transform group-hover:-translate-y-1">
                 <Building2 className="text-[#1a365d]" size={28} />
               </div>
               <div className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-[#1a365d] mb-1">₹150T</div>
-              <div className="text-[min(11px,2.5vw)] uppercase tracking-widest font-black text-blue-600/70">Assets Managed</div>
+              <div className="text-[min(12px,2.5vw)] font-bold text-blue-600/70">Assets Managed</div>
             </div>
             <div className="flex flex-col items-center group cursor-default">
               <div className="w-[min(64px,12vw)] h-[min(64px,12vw)] rounded-full bg-white shadow-sm flex items-center justify-center mb-6 group-hover:shadow-md transition-all duration-500 transform group-hover:-translate-y-1">
                 <Globe className="text-[#1a365d]" size={28} />
               </div>
               <div className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-[#1a365d] mb-1">12 Chapters</div>
-              <div className="text-[min(11px,2.5vw)] uppercase tracking-widest font-black text-blue-600/70">National Network</div>
+              <div className="text-[min(12px,2.5vw)] font-bold text-blue-600/70">National Network</div>
             </div>
             <div className="flex flex-col items-center group cursor-default">
               <div className="w-[min(64px,12vw)] h-[min(64px,12vw)] rounded-full bg-white shadow-sm flex items-center justify-center mb-6 group-hover:shadow-md transition-all duration-500 transform group-hover:-translate-y-1">
                 <BarChart3 className="text-[#1a365d]" size={28} />
               </div>
               <div className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-[#1a365d] mb-1">Top 5%</div>
-              <div className="text-[min(11px,2.5vw)] uppercase tracking-widest font-black text-blue-600/70">Policy Influence</div>
+              <div className="text-[min(12px,2.5vw)] font-bold text-blue-600/70">Policy Influence</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Priorities Grid */}
+      {/* Priorities Grid - Mixed Case */}
       <section className="py-[12%] md:py-32 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-10 transition-all">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2 mb-4">
                 <div className="h-[2px] w-8 bg-blue-600"></div>
-                <h4 className="text-blue-600 font-bold uppercase tracking-widest text-[min(12px,3vw)]">Core Priorities</h4>
+                <h4 className="text-blue-600 font-bold text-[min(13px,3vw)]">Core Priorities</h4>
               </div>
               <h2 className="text-fluid-h2 font-bold tracking-tight text-[#1a365d] leading-[1.1] transition-all">Advancing the Future of Business and Global Public Policy.</h2>
             </div>
-            <button className="flex items-center gap-2 text-[min(13px,3vw)] font-black uppercase tracking-widest group border-b-2 border-transparent hover:border-blue-600 pb-2 transition-all whitespace-nowrap">
+            <button className="flex items-center gap-2 text-[min(14px,3vw)] font-bold group border-b-2 border-transparent hover:border-blue-600 pb-2 transition-all whitespace-nowrap text-[#1a365d]">
               All Issues <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -80,7 +79,7 @@ const App: React.FC = () => {
                   <p className="text-white/80 text-[clamp(0.85rem,1.1vw,1rem)] mb-8 line-clamp-3 max-w-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
                     {issue.description}
                   </p>
-                  <div className="flex items-center gap-2 text-white text-[11px] font-black uppercase tracking-[0.2em] hover:text-blue-300 transition-colors">
+                  <div className="flex items-center gap-2 text-white text-[13px] font-bold hover:text-blue-300 transition-colors">
                     Learn More <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -90,22 +89,19 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Social Pulse Feed */}
-      <TwitterFeed />
-
-      {/* The Wire / News Feed */}
+      {/* The Wire / News Feed - Mixed Case */}
       <section className="py-[10%] md:py-32 bg-[#fcfcfc]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-10">
           <div className="flex justify-between items-end mb-16 pb-8 border-b border-gray-100">
             <h2 className="text-[clamp(2rem,3.5vw,2.8rem)] font-bold tracking-tight text-[#1a365d]">The Wire</h2>
-            <button className="text-[min(12px,3vw)] uppercase tracking-widest font-black text-[#1a365d] hover:text-blue-600 transition-all flex items-center gap-2">
+            <button className="text-[min(13px,3vw)] font-bold text-[#1a365d] hover:text-blue-600 transition-all flex items-center gap-2">
               All Media <ArrowRight size={16} />
             </button>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 md:gap-20">
             {LATEST_NEWS.map((item) => (
               <div key={item.id} className="group cursor-pointer">
-                <div className="flex items-center gap-4 text-[min(11px,2.5vw)] font-black uppercase tracking-widest text-gray-400 mb-6 group-hover:text-blue-600 transition-colors">
+                <div className="flex items-center gap-4 text-[min(12px,2.5vw)] font-bold text-gray-400 mb-6 group-hover:text-blue-600 transition-colors">
                   <span className="bg-gray-50 px-3 py-1 rounded-md">{item.category}</span>
                   <span className="w-1.5 h-1.5 bg-gray-200 rounded-full"></span>
                   <span>{item.date}</span>
@@ -113,7 +109,7 @@ const App: React.FC = () => {
                 <h3 className="text-[clamp(1.25rem,1.8vw,1.5rem)] font-bold leading-tight text-[#1a365d] group-hover:text-blue-900 transition-all duration-300 mb-8 transform group-hover:translate-x-1">
                   {item.title}
                 </h3>
-                <div className="inline-flex items-center gap-2 text-blue-600 font-black text-[11px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
+                <div className="inline-flex items-center gap-2 text-blue-600 font-bold text-[13px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
                   Read Investigation <ArrowRight size={14} />
                 </div>
               </div>
@@ -122,7 +118,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Responsive CTA */}
+      {/* Responsive CTA - Mixed Case */}
       <section className="bg-[#1a365d] py-[15%] md:py-40 text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
           <div className="text-[20vw] font-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 italic text-white/50">AICMAA</div>
@@ -132,7 +128,7 @@ const App: React.FC = () => {
            <p className="text-blue-100/70 text-[clamp(1.1rem,1.5vw,1.4rem)] mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
              Partner with India’s most influential strategic accountants to shape the future of industrial policy and national development.
            </p>
-           <button className="bg-white text-[#1a365d] px-12 py-5 text-[14px] font-black uppercase tracking-[0.2em] hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:scale-105 active:scale-95">
+           <button className="bg-white text-[#1a365d] px-12 py-5 text-[16px] font-bold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:scale-105 active:scale-95">
              Apply for Membership
            </button>
         </div>

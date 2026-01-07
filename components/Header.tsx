@@ -4,6 +4,7 @@ import { Search, Menu, X, ChevronDown } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,12 +14,20 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = [
+    'Our Work',
+    'Our Thinking',
+    'Representation',
+    'Connect',
+    'Donate'
+  ];
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 bg-white ${isScrolled ? 'py-2 shadow-sm border-b border-gray-100' : 'py-4'}`}>
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 flex justify-between items-center relative">
         
         {/* Logo Section */}
-        <div className="flex items-center gap-2.5 group cursor-pointer shrink-0">
+        <div className="flex items-center gap-2.5 group cursor-pointer shrink-0 z-[110]">
           <div className="relative w-9 h-9 flex items-center justify-center">
             {[...Array(9)].map((_, i) => (
               <div 
@@ -38,23 +47,25 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Desktop Navigation - Centered Exactly */}
+        {/* Desktop Navigation - Updated Items */}
         <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-          {['Policy Perspectives', 'Corporate Initiatives', 'Media', 'About Us'].map((name) => (
+          {navItems.map((name) => (
             <a 
               key={name} 
               href="#" 
-              className="flex items-center gap-1 text-[15px] font-medium text-[#1a365d] hover:text-blue-600 transition-colors whitespace-nowrap"
+              className="flex items-center gap-1.5 text-[15px] font-semibold text-[#1a365d] hover:text-blue-600 transition-colors whitespace-nowrap"
             >
               {name}
-              <ChevronDown size={14} className="text-gray-400 mt-0.5" />
+              {name !== 'Donate' && (
+                <ChevronDown size={14} className="text-gray-400 mt-0.5" />
+              )}
             </a>
           ))}
         </nav>
 
         {/* Right Section: Member Portal & Search */}
-        <div className="flex items-center gap-4">
-          <button className="hidden md:block px-6 py-2 bg-[#f0f4f8] hover:bg-[#e2e8f0] text-[#1a365d] text-[14px] font-bold rounded-full transition-all duration-300">
+        <div className="flex items-center gap-4 z-[110]">
+          <button className="hidden md:block px-6 py-2 bg-[#f0f4f8] hover:bg-[#e2e8f0] text-[#1a365d] text-[14px] font-bold rounded-full transition-all duration-300 whitespace-nowrap">
             Member Portal
           </button>
           
@@ -62,9 +73,38 @@ const Header: React.FC = () => {
             <Search size={21} strokeWidth={2.5} />
           </button>
 
-          <button className="lg:hidden p-2 text-[#1a365d]">
-            <Menu size={24} />
+          <button 
+            className="lg:hidden p-2 text-[#1a365d] hover:bg-gray-100 rounded-full transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 bg-white z-[105] transition-transform duration-500 lg:hidden ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className="flex flex-col h-full pt-24 px-10 pb-10">
+          <div className="flex-1 space-y-6 overflow-y-auto py-8">
+            {navItems.map((name) => (
+              <a 
+                key={name} 
+                href="#" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block text-2xl font-bold text-[#1a365d] hover:text-blue-600 transition-colors"
+              >
+                {name}
+              </a>
+            ))}
+          </div>
+          <div className="pt-8 border-t border-gray-100">
+            <button className="w-full py-4 bg-[#1a365d] text-white font-bold rounded-xl text-lg mb-4">
+              Member Portal
+            </button>
+            <p className="text-center text-sm text-gray-500 font-medium">
+              © 2024 All India CMA Association
+            </p>
+          </div>
         </div>
       </div>
     </header>

@@ -41,7 +41,7 @@ const PolicyAssistant: React.FC = () => {
               <Bot size={24} />
               <div>
                 <h3 className="font-bold text-sm">Policy AI Assistant</h3>
-                <p className="text-[10px] opacity-70 uppercase tracking-widest font-semibold">AICMAA Research</p>
+                <p className="text-[10px] opacity-70 font-semibold">AICMAA Research</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)}><X size={20} /></button>
@@ -92,7 +92,7 @@ const PolicyAssistant: React.FC = () => {
           onClick={() => setIsOpen(true)}
           className="bg-blue-900 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform flex items-center gap-3 group"
         >
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-500 font-bold whitespace-nowrap text-xs uppercase tracking-widest">
+          <span className="max-w-0 overflow-hidden group-hover:max-w-[200px] transition-all duration-500 font-bold whitespace-nowrap text-sm">
             Policy Assistant
           </span>
           <Bot size={28} />

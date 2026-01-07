@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-xs mb-6">Issues</h4>
+            <h4 className="font-bold text-sm mb-6 text-blue-400">Issues</h4>
             <ul className="space-y-4 text-gray-400 text-sm">
               <li><a href="#" className="hover:text-white transition">Economic Growth</a></li>
               <li><a href="#" className="hover:text-white transition">Tax Policy</a></li>
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-xs mb-6">News</h4>
+            <h4 className="font-bold text-sm mb-6 text-blue-400">News</h4>
             <ul className="space-y-4 text-gray-400 text-sm">
               <li><a href="#" className="hover:text-white transition">Press Releases</a></li>
               <li><a href="#" className="hover:text-white transition">Reports</a></li>
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-xs mb-6">About</h4>
+            <h4 className="font-bold text-sm mb-6 text-blue-400">About</h4>
             <ul className="space-y-4 text-gray-400 text-sm">
               <li><a href="#" className="hover:text-white transition">Mission</a></li>
               <li><a href="#" className="hover:text-white transition">Leadership</a></li>
@@ -52,11 +52,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center mt-10 text-[10px] text-gray-500 font-bold uppercase tracking-widest gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mt-10 text-[12px] text-gray-500 font-medium gap-4">
           <div>© 2024 All India CMA Association. All Rights Reserved.</div>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Use</a>
+            <a href="#" className="hover:text-white transition">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition">Terms of Use</a>
           </div>
         </div>
       </div>
