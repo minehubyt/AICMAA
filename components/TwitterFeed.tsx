@@ -49,10 +49,6 @@ const TwitterFeed: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Text Content */}
           <div className="w-full lg:w-[380px] shrink-0">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="h-[2px] w-8 bg-blue-600"></div>
-              <h4 className="text-blue-600 font-bold uppercase tracking-widest text-[11px]">Social Pulse</h4>
-            </div>
             <h2 className="text-[32px] font-normal tracking-tight text-black leading-tight mb-8">
               Real-time updates from @AICMAA
             </h2>

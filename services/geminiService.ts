@@ -1,18 +1,17 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || "";
-
 export class AICMAA_AI {
-  private ai: GoogleGenAI;
+  // Creating a new instance right before the API call ensures it always uses the current environment configuration
   
-  constructor() {
-    this.ai = new GoogleGenAI({ apiKey });
-  }
+  constructor() {}
 
   async askAssistant(prompt: string) {
+    // Create a new GoogleGenAI instance right before making an API call
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     try {
-      const response = await this.ai.models.generateContent({
+      // Using ai.models.generateContent with model name and prompt directly
+      const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: prompt,
         config: {
@@ -20,6 +19,7 @@ export class AICMAA_AI {
           temperature: 0.7,
         },
       });
+      // Directly accessing the .text property of GenerateContentResponse
       return response.text;
     } catch (error) {
       console.error("Gemini API Error:", error);

@@ -1,65 +1,148 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+const slides = [
+  {
+    id: 1,
+    headline: "AICMAA is the voice of India’s leading CMAs in New Delhi.",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=2400",
+    alt: "AICMAA Leadership Summit"
+  },
+  {
+    id: 2,
+    headline: "Advancing professional excellence across the manufacturing sector.",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=2400",
+    alt: "Strategic Policy Roundtable"
+  },
+  {
+    id: 3,
+    headline: "Driving cost competitiveness for a developed India by 2047.",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2400",
+    alt: "National Economic Forum"
+  },
+  {
+    id: 4,
+    headline: "Empowering the next generation of management accountants.",
+    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=2400",
+    alt: "CMA Workshop"
+  }
+];
+
 const Hero: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsTransitioning(false), 800);
+    return () => clearTimeout(timeout);
+  }, [currentIndex]);
+
   return (
-    <section className="relative w-full h-[500px] md:h-screen flex flex-col md:flex-row overflow-hidden bg-white mt-0">
+    // Height accounts for exactly 80px fixed header
+    <section className="relative w-full h-[calc(100svh-80px)] mt-[80px] flex overflow-hidden bg-white">
       
-      {/* Background Image - Absolute fill ensures it goes behind header */}
+      {/* Background Slider */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?auto=format&fit=crop&q=80&w=2000" 
-          alt="AICMAA Background" 
-          className="w-full h-full object-cover animate-slide-right"
-        />
+        {slides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img 
+              src={slide.image} 
+              alt={slide.alt} 
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-black/10"></div>
+          </div>
+        ))}
       </div>
 
-      {/* Left Pane - Translucent box */}
-      <div className="w-full md:w-[45%] lg:w-[40%] h-full flex flex-col bg-white/90 backdrop-blur-xl relative z-20 border-r border-gray-200/30">
+      {/* Frosted Pane */}
+      <div className="relative z-10 w-full md:w-[50%] lg:w-[42%] xl:w-[38%] h-full flex flex-col bg-white/40 backdrop-blur-[30px] border-r border-white/20 shadow-2xl transition-all duration-500">
         
-        {/* Alignment spacer for Fixed Header - matches Header height exactly to prevent gaps */}
-        <div className="h-[65px] lg:h-[73px] shrink-0"></div>
-
-        {/* Content wrapper */}
-        <div className="flex-1 flex flex-col justify-center px-6 md:px-10 lg:px-14 animate-reveal">
-          <div className="max-w-[400px] mb-20">
-            {/* Professional, Black, Unbolded Typography */}
-            <h1 className="text-black text-[20px] md:text-[24px] lg:text-[28px] font-normal leading-[1.3] mb-8 tracking-tight">
-              AICMAA is the voice of India’s leading CMAs in New Delhi.
+        {/* Main Text Content */}
+        <div className="flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-8">
+          <div className={`w-full max-w-[480px] transition-all duration-700 transform ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+            {/* AGGRESSIVE FLUID TYPOGRAPHY - Shrinks much more on mobile */}
+            <h1 className="text-[#111] text-[clamp(1.2rem,6vw,2.25rem)] font-normal leading-[1.2] mb-6 md:mb-10 tracking-tight">
+              {slides[currentIndex].headline}
             </h1>
             
-            <div className="animate-reveal [animation-delay:300ms]">
-              <button className="px-8 py-2.5 bg-white hover:bg-gray-50 text-black text-[13px] font-medium rounded-full border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-md">
-                Learn More
-              </button>
-            </div>
+            <button className="px-8 md:px-10 py-3 md:py-4 bg-white text-black text-[13px] md:text-[15px] font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+              Learn More
+            </button>
           </div>
         </div>
 
-        {/* Carousel Navigation - Docked at bottom */}
-        <div className="pb-10 pl-6 md:pl-10 lg:pl-14 flex items-center gap-4 animate-reveal [animation-delay:500ms]">
-          <div className="flex bg-white/90 backdrop-blur-sm rounded-full border border-gray-100 shadow-sm overflow-hidden py-1 px-1.5 items-center">
-            <button className="p-1 hover:bg-gray-50 rounded-full transition-colors">
-              <ChevronLeft size={16} className="text-black" strokeWidth={2} />
+        {/* Navigation Controls - Re-scaled for smaller screens */}
+        <div className="pb-8 md:pb-12 px-6 md:px-12 lg:px-16 flex flex-wrap items-center gap-6 md:gap-10">
+          {/* Arrow Pill Group - Shrunk for small screens */}
+          <div className="flex items-center bg-white/95 rounded-full shadow-lg p-1 border border-white/80">
+            <button 
+              onClick={prevSlide}
+              className="p-2 md:p-3 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-[#1a365d] outline-none"
+            >
+              <ChevronLeft size={18} className="md:w-[22px]" strokeWidth={2.5} />
             </button>
-            <div className="w-[1px] h-3.5 bg-gray-200 self-center mx-1"></div>
-            <button className="p-1 hover:bg-gray-50 rounded-full transition-colors">
-              <ChevronRight size={16} className="text-black" strokeWidth={2} />
+            <div className="w-[1px] h-4 md:h-6 bg-gray-200 mx-1 md:mx-2"></div>
+            <button 
+              onClick={nextSlide}
+              className="p-2 md:p-3 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-[#1a365d] outline-none"
+            >
+              <ChevronRight size={18} className="md:w-[22px]" strokeWidth={2.5} />
             </button>
           </div>
           
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-blue-600 shadow-sm"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-200"></div>
+          {/* Indicators - Smaller sizes for mobile */}
+          <div className="flex items-center gap-1.5 md:gap-2.5">
+             {slides.map((_, i) => (
+               <button
+                key={i}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setCurrentIndex(i);
+                }}
+                className={`transition-all duration-500 rounded-full ${
+                  i === currentIndex 
+                    ? 'w-6 md:w-8 h-1.5 md:h-2 bg-[#4A90E2] shadow-sm' 
+                    : 'w-1.5 md:w-2 h-1.5 md:h-2 bg-white border border-gray-200'
+                }`}
+               />
+             ))}
           </div>
         </div>
       </div>
 
-      {/* Right area allows background image to shine through fully */}
-      <div className="relative flex-1 hidden md:block"></div>
+      {/* Institutional Leader Watermark */}
+      <div className="flex-1 hidden md:block relative pointer-events-none">
+        <div className="absolute bottom-12 right-12 flex flex-col items-end animate-reveal opacity-80">
+          <span className="text-white text-[10px] font-bold uppercase tracking-[0.4em] mb-2 drop-shadow-md">
+            INSTITUTIONAL LEADER
+          </span>
+          <div className="w-20 h-[2px] bg-white shadow-sm"></div>
+        </div>
+      </div>
     </section>
   );
 };

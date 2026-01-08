@@ -8,52 +8,63 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Twitter Widget Script -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
       :root {
-        --fluid-h1: clamp(1.65rem, 3.2vw + 0.5rem, 2.75rem);
-        --fluid-h2: clamp(1.4rem, 2.6vw + 0.5rem, 2.3rem);
-        --fluid-body: clamp(0.85rem, 0.4vw + 0.55rem, 1.05rem);
+        --fluid-body: clamp(0.9rem, 0.2vw + 0.6rem, 1.1rem);
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-content-smoothing: grayscale;
-        color: #1a365d;
+        color: #1e293b;
         overflow-x: hidden;
         font-size: var(--fluid-body);
+        margin: 0;
+        padding: 0;
         background-color: #fff;
       }
       
-      .text-fluid-h1 { font-size: var(--fluid-h1); }
-      .text-fluid-h2 { font-size: var(--fluid-h2); }
+      .tracking-tightest { letter-spacing: -0.05em; }
 
       @keyframes revealUp {
-        0% { transform: translateY(20px); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+        0% { transform: translateY(30px) scale(0.98); opacity: 0; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
       }
 
-      @keyframes slideInRight {
-        0% { transform: translateX(30px); opacity: 0; }
-        100% { transform: translateX(0); opacity: 1; }
+      @keyframes dropdownSlide {
+        0% { transform: translateY(-15px) scale(0.99); opacity: 0; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+      }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
       }
 
       .animate-reveal {
-        animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation: revealUp 0.8s var(--ease-out-expo) both;
       }
 
-      .animate-slide-right {
-        animation: slideInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      .animate-dropdown {
+        animation: dropdownSlide 0.5s var(--ease-out-expo) both;
+      }
+
+      .animate-page-fade {
+        animation: fadeIn 0.4s var(--ease-out-expo) both;
       }
 
       .custom-scrollbar::-webkit-scrollbar {
         width: 6px;
       }
       .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f8fafc;
+        background: transparent;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
         background: #cbd5e1;
@@ -62,11 +73,25 @@
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
       }
-      
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Buttery smooth transitions for all interactive elements */
       * {
-        transition-property: font-size, padding, margin, width, height, max-width;
-        transition-duration: 0.3s;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-property: background-color, border-color, color, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-duration: 400ms;
+        transition-timing-function: var(--ease-out-expo);
+      }
+
+      /* Prevent jitter on hover */
+      .hover-lift:hover {
+        transform: translateY(-4px);
       }
     </style>
     <script type="importmap">
